@@ -1,3 +1,9 @@
+from django.http.response import HttpResponse
 from django.shortcuts import render
 
-# Create your views here.
+
+def transactions(request):
+    return HttpResponse("Hello transactions")
+
+def payment(request):
+    return HttpResponse("Hello payment")
