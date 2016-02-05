@@ -3,7 +3,7 @@
 {% bootstrap_javascript %}
 
 <!doctype html>
-<html lang="en-GB">
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -21,7 +21,22 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <h1>Hello world! This is HTML5 Boilerplate.</h1>
-
+        <div class="container-fluid">
+	        <nav class="navbar navbar-default">
+	  			<div class="container-fluid">
+	    			<!-- Brand and toggle get grouped for better mobile display -->
+	    			<div class="navbar-header">
+	    				<a class="navbar-brand" href="{% url 'home' %}">Home</a>
+	    				<a class="navbar-brand" href="{% url 'transactions' %}">Transactions</a>
+	    				<a class="navbar-brand" href="{% url 'payments' %}">Payments</a>
+	    			</div>
+	    		</div>
+	    	</nav>
+		</div>
+		<div class="container-fluid">
+			{% block content %}
+			Welcome to the Payment System.
+			{% endblock %}
+		</div>
     </body>
 </html>
