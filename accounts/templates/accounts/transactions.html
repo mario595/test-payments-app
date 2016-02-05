@@ -1,9 +1,25 @@
 {% extends "base.html" %}
+{% load humanize %} 
 
 {% block title %}
 	Transactions
 {% endblock %} 
 
 {% block content %}
-Hello Transactions
+	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+		{% for account in accounts %}
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="heading-{{forloop.counter}}"  data-toggle="collapse" data-parent="#accordion" href="#collapse-{{forloop.counter}}" aria-expanded="true" aria-controls="collapse-{{forloop.counter}}">
+					<h4 class="panel-title">
+						{{ account.name }} &pound;{{ account.balance | intcomma }}
+					</h4>
+				</div>
+				<div id="collapse-{{forloop.counter}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-{{forloop.counter}}">
+					<div class="panel-body">
+						Account Transactions
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
 {% endblock %}
