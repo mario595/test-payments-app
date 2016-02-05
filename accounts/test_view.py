@@ -13,8 +13,6 @@ from accounts.models import Account
 
 class TestViews(django.test.TestCase):
 
-    
-
     def setUp(self):
         pass
     
