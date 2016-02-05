@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 
 def transactions(request):
-    return HttpResponse("Hello transactions")
+    return HttpResponse(render(request, 'accounts/transactions.html', {}))
 
 def payment(request):
-    return HttpResponse("Hello payment")
+    return HttpResponse(render(request, 'accounts/payment.html', {}))
