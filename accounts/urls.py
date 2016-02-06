@@ -3,7 +3,7 @@ Created on 5 Feb 2016
 
 @author: mariopersonal
 '''
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 from accounts.views import transactions, payment
 
