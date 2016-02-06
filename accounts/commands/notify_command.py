@@ -7,7 +7,10 @@ from django.core.mail import send_mass_mail
 
 from accounts.commands.commands import Command
 
-
+'''
+This is a NotifyCommand. It is used to notify the users involved in a transaction. The notification
+is being made through an email.
+'''
 class NotifyCommand(Command):
     
     def execute(self):

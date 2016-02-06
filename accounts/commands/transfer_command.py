@@ -5,7 +5,11 @@ Created on 6 Feb 2016
 '''
 from accounts.commands.commands import Command, CommandError
 
-
+'''
+This is a transfer command. It validates if the transfer is correct (Different account and enough funds) and
+makes the transfer, updating both accounts involved and saving the transaction. In case of validation error,
+it raised appropriate errors.
+'''
 class TransferCommand(Command):
     
     def execute(self):
