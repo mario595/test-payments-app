@@ -9,9 +9,14 @@ from django.forms.models import ModelForm
 from accounts.models import Transaction, Account
 
 
+class AccountModelChoiceField(forms.ModelChoiceField):
+    def label_from_instance(self, account):
+        return "%s - %2.0f" % (account.name, account.balance)
+
 class TransactionForm(ModelForm):
-    from_account = forms.ModelChoiceField(queryset=Account.objects.filter(balance__gt=0))
-    to_account = forms.ModelChoiceField(queryset=Account.objects.all())
+    from_account = AccountModelChoiceField(queryset=Account.objects.filter(balance__gt=0))
+    to_account = AccountModelChoiceField(queryset=Account.objects.all())
     class Meta:
         model = Transaction
         fields = ['from_account', 'to_account', 'amount']
+        
