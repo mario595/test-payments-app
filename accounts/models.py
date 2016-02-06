@@ -11,7 +11,7 @@ class Account(models.Model):
     email = models.EmailField()
     
     def __unicode__(self):
-        return "%s - %2.0f" % (self.name, self.balance);
+        return self.name
     
 class Transaction(models.Model):
     from_account = models.ForeignKey(Account, related_name='from_transaction', on_delete=models.CASCADE)

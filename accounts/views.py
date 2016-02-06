@@ -30,6 +30,9 @@ def payment(request):
                 cmd = factory.create_command("TRANS", transaction)
                 cmd.execute()
                 messages.success(request, "Transfer succesful")
+                cmd = factory.create_command("NOTIFY", transaction)
+                cmd.execute()
+                
             except CommandError as ce:
                 messages.error(request, ("Transfer unsuccesful: %s" % ce))
             except Exception as e:
