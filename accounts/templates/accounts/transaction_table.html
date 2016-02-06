@@ -1,0 +1,22 @@
+{% if transfers %}
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>From</th>
+				<th>To</th>
+				<th>Amount (£)</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for transfer in transfers %}
+				<tr>
+					<td>{{transfer.from_account.name}}</td>
+					<td>{{transfer.to_account.name}}</td>
+					<td>{{transfer.amount}}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% else %}
+	<p>No transactions yet</p>
+{% endif %}

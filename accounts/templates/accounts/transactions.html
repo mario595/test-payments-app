@@ -1,25 +1,31 @@
 {% extends "base.html" %}
-{% load humanize %} 
-
+{% load humanize %}
+{% load transaction_table %}
 {% block title %}
 	Transactions
-{% endblock %} 
-
+{% endblock %}
 {% block content %}
-	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+	<div class="panel-group" id="accordion" role="tablist"
+		aria-multiselectable="true">
 		{% for account in accounts %}
-			<div class="panel panel-default">
-				<div class="panel-heading" role="tab" id="heading-{{forloop.counter}}"  data-toggle="collapse" data-parent="#accordion" href="#collapse-{{forloop.counter}}" aria-expanded="true" aria-controls="collapse-{{forloop.counter}}">
-					<h4 class="panel-title">
-						{{ account.name }} &pound;{{ account.balance | intcomma }}
-					</h4>
-				</div>
-				<div id="collapse-{{forloop.counter}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-{{forloop.counter}}">
-					<div class="panel-body">
-						Account Transactions
-					</div>
+		<div class="panel panel-default">
+			<div class="panel-heading" role="tab" id="heading-{{forloop.counter}}"
+				data-toggle="collapse" data-parent="#accordion"
+				href="#collapse-{{forloop.counter}}" aria-expanded="true"
+				aria-controls="collapse-{{forloop.counter}}">
+				<h4 class="panel-title">{{ account.name }} &pound;{{ account.balance | intcomma }}</h4>
+			</div>
+			<div id="collapse-{{forloop.counter}}" class="panel-collapse collapse"
+				role="tabpanel" aria-labelledby="heading-{{forloop.counter}}">
+				<div class="panel-body">
+					<h3>Account Transactions</h3>
+					<h4>From this account</h4>
+					{% transaction_table account.from_transaction.all %}
+					<h4>To this account</h4>
+					{% transaction_table account.to_transaction.all %}
 				</div>
 			</div>
+		</div>
 		{% endfor %}
 	</div>
 {% endblock %}
