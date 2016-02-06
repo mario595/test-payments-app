@@ -10,9 +10,13 @@ class TransferCommand(Command):
     
     def execute(self):
         if not self._are_accounts_different():
-            raise SameAccountError()
+            raise SameAccountError('You have selected to make a transfer to the same account, please,\
+            select different accounts and try again')
         if not self._is_balance_sufficient():
-            raise FromAccountInsufficientBalanceError()
+            transfer = self._obj
+            raise FromAccountInsufficientBalanceError('The transfer of %0.2f was unsucessful as account %s \
+                                                        has insufficient funds (%0.2f)' %
+                                                      (transfer.amount, transfer.from_account.name, transfer.from_account.balance))
         self._make_transfer()
     
     def _are_accounts_different(self):

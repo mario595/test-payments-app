@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
@@ -6,7 +7,9 @@ from accounts.command_factory import CommandFactory
 from accounts.commands import CommandError
 from accounts.forms import TransactionForm
 from accounts.models import Account
+import logging
 
+logging.basicConfig()
 
 def transactions(request):
     accounts = Account.objects.all()
@@ -26,12 +29,14 @@ def payment(request):
                 factory = CommandFactory()
                 cmd = factory.create_command("TRANS", transaction)
                 cmd.execute()
+                messages.success(request, "Transfer succesful")
             except CommandError as ce:
-                pass
+                messages.error(request, ("Transfer unsuccesful: %s" % ce))
             except Exception as e:
-                pass
+                logging.error(e)
+                messages.error(request, "Something went wrong, please try again")
             # redirect to a new URL:
-            return HttpResponseRedirect(reverse('home'))
+            return HttpResponseRedirect(reverse('payments'))
 
     # if a GET (or any other method) we'll create a blank form
     else:
