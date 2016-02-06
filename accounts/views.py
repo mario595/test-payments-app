@@ -5,7 +5,7 @@ from django.shortcuts import render
 from accounts.command_factory import CommandFactory
 from accounts.commands import CommandError
 from accounts.forms import TransactionForm
-from accounts.models import Account, Transaction
+from accounts.models import Account
 
 
 def transactions(request):
