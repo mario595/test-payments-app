@@ -3,8 +3,8 @@ from django.core.urlresolvers import reverse
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
-from accounts.command_factory import CommandFactory
-from accounts.commands import CommandError
+from accounts.commands.command_factory import CommandFactory
+from accounts.commands.commands import CommandError
 from accounts.forms import TransactionForm
 from accounts.models import Account
 import logging
@@ -48,6 +48,7 @@ def payment(request):
 
     return render(request, 'accounts/payment.html', {'form': form})
 #     return HttpResponse(render(request, 'accounts/payment.html', {}))
+
 
 def _make_transaction(request, transaction, factory):
     cmd = factory.create_command("TRANS", transaction)

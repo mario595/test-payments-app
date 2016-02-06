@@ -5,7 +5,7 @@ Created on 6 Feb 2016
 '''
 import django.test
 
-from accounts.command_factory import CommandFactory
+from accounts.commands.command_factory import CommandFactory
 from accounts.models import Transaction, Account
 
 

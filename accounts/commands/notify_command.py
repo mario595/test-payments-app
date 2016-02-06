@@ -5,7 +5,7 @@ Created on 6 Feb 2016
 '''
 from django.core.mail import send_mass_mail
 
-from accounts.commands import Command
+from accounts.commands.commands import Command
 
 
 class NotifyCommand(Command):

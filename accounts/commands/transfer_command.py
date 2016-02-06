@@ -3,7 +3,7 @@ Created on 6 Feb 2016
 
 @author: mariopersonal
 '''
-from accounts.commands import Command, CommandError
+from accounts.commands.commands import Command, CommandError
 
 
 class TransferCommand(Command):

@@ -6,7 +6,7 @@ Created on 6 Feb 2016
 import django.test
 
 from accounts.models import Account, Transaction
-from accounts.transfer_command import TransferCommand, SameAccountError, \
+from accounts.commands.transfer_command import TransferCommand, SameAccountError, \
     FromAccountInsufficientBalanceError
 
 

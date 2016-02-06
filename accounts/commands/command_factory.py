@@ -3,8 +3,8 @@ Created on 6 Feb 2016
 
 @author: mariopersonal
 '''
-from accounts.transfer_command import TransferCommand
-from accounts.notify_command import NotifyCommand
+from accounts.commands.notify_command import NotifyCommand
+from accounts.commands.transfer_command import TransferCommand
 
 
 class CommandFactory(object):
