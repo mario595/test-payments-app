@@ -3,7 +3,7 @@ Created on 6 Feb 2016
 
 @author: mariopersonal
 '''
-from accounts.commands import Command
+from accounts.commands import Command, CommandError
 
 
 class TransferCommand(Command):
@@ -30,9 +30,11 @@ class TransferCommand(Command):
         from_account.balance = from_account.balance - amount
         to_account.balance = to_account.balance + amount
         
+        from_account.save()
+        to_account.save()
         transfer.save()
 
-class SameAccountError(Exception):
+class SameAccountError(CommandError):
     pass
-class FromAccountInsufficientBalanceError(Exception):
+class FromAccountInsufficientBalanceError(CommandError):
     pass

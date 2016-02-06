@@ -2,8 +2,10 @@ from django.core.urlresolvers import reverse
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
+from accounts.command_factory import CommandFactory
+from accounts.commands import CommandError
 from accounts.forms import TransactionForm
-from accounts.models import Account
+from accounts.models import Account, Transaction
 
 
 def transactions(request):
@@ -19,7 +21,15 @@ def payment(request):
         # check whether it's valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required
-            # ...
+            try:
+                transaction = form.save(commit=False)
+                factory = CommandFactory()
+                cmd = factory.create_command("TRANS", transaction)
+                cmd.execute()
+            except CommandError as ce:
+                pass
+            except Exception as e:
+                pass
             # redirect to a new URL:
             return HttpResponseRedirect(reverse('home'))
 
